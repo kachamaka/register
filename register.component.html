@@ -1,0 +1,42 @@
+    <form [formGroup]="form" (submit)="onRegister()">
+      <div >
+        <h1 style="font-weight:300; margin-top: 0px">Регистрация</h1>
+  
+        <div class="col l6 offset-l3 m6 offset-m3 s12 input-field form-group">
+            <input placeholder="Username" type="text" id="user_name" name="username" formControlName="username" (input)="validateUsername()"/>
+            <label for="user_name">Потребителско име</label>
+            <p 
+                *ngIf="this.registerService.validUsername == false &&
+                this.registerService.validUsernameMessage" 
+                style="color: red; margin: 0">
+                {{this.registerService.validUsernameMessage}}
+            </p>
+        </div>
+  
+        <div class="col l6 offset-l3 m6 offset-m3 s12 input-field form-group">
+            <input placeholder="Email" type="text" id="email" name="email" class="form-control" autocomplete="off" formControlName="email" (input)="validateEmail()" />
+            <label for="email">Имейл</label>
+            <p 
+                *ngIf="this.registerService.validEmail == false &&
+                this.registerService.validEmailMessage" 
+                style="color: red; margin: 0">
+                {{this.registerService.validEmailMessage}}
+            </p>
+        </div>
+  
+        <div class="col l6 offset-l3 m6 offset-m3 s12 input-field form-group">
+            <input placeholder="Password" type="password" name="password" class="form-control" autocomplete="off" formControlName="password" (input)="validatePassword()"/>
+            <label for="password">Парола</label>
+            <p 
+                *ngIf="this.registerService.validPassword == false &&
+                this.registerService.validPasswordMessage" 
+                style="color: red; margin: 0">
+                {{this.registerService.validPasswordMessage}}
+            </p>
+        </div>
+  
+        <button [disabled]="!this.registerService.validUsername || !this.registerService.validPassword || !this.registerService.validEmail" >Register</button>
+    </div>
+    </form>
+  
+  
